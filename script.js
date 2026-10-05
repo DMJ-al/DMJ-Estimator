@@ -81,7 +81,27 @@ windowMaterialsButton.addEventListener("click", function() {
 
 checkPricesButton.addEventListener("click", function() {
 
-    alert("Price checking will be added next.");
+    const selectedMaterials = [];
+
+    const checkboxes = windowMaterialsMenu.querySelectorAll(
+        'input[type="checkbox"]:checked'
+    );
+
+    checkboxes.forEach(function(checkbox) {
+        selectedMaterials.push(checkbox.value);
+    });
+
+    if (selectedMaterials.length === 0) {
+        alert("Please select at least one material.");
+        return;
+    }
+
+    windowMaterialsMenu.style.display = "none";
+    pricesMenu.style.display = "block";
+
+    materialSearch.value = "";
+
+    displayMaterials();
 
 });
 
