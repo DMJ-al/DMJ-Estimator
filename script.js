@@ -19,7 +19,9 @@ const windowSizeList = document.getElementById("window-size-list");
 
 const materialSearch = document.getElementById("material-search");
 const priceList = document.getElementById("price-list");
-
+const estimatePricesMenu = document.getElementById("estimate-prices-menu");
+const estimatePriceList = document.getElementById("estimate-price-list");
+const confirmEstimatePricesButton = document.getElementById("confirm-estimate-prices-btn");
 
 estimateButton.addEventListener("click", function() {
     mainMenu.style.display = "none";
@@ -96,12 +98,55 @@ checkPricesButton.addEventListener("click", function() {
         return;
     }
 
+    estimatePricesMenu.style.display = "block";
     windowMaterialsMenu.style.display = "none";
-    pricesMenu.style.display = "block";
 
-    materialSearch.value = "";
+    estimatePriceList.innerHTML = "";
 
-    displayMaterials();
+    selectedMaterials.forEach(function(materialName) {
+
+        const material = materials.find(function(item) {
+            return item.name === materialName;
+        });
+
+        if (!material) {
+            return;
+        }
+
+        const myPrice = getMyPrice(material.name);
+
+        const item = document.createElement("div");
+
+        item.innerHTML = `
+            <strong>${material.name}</strong>
+
+            <p>
+                Reference Price:
+                ₦${material.referencePrice}
+            </p>
+
+            <p>
+                My Price:
+                ₦${myPrice || "Not set"}
+            </p>
+
+            <label>
+                Price for this estimate:
+                <input
+                    type="number"
+                    class="estimate-price-input"
+                    data-material="${material.name}"
+                    value="${myPrice || material.referencePrice}"
+                    min="0"
+                >
+            </label>
+
+            <hr>
+        `;
+
+        estimatePriceList.appendChild(item);
+
+    });
 
 });
 
