@@ -15,6 +15,9 @@ const pricesMenu = document.getElementById("prices-menu");
 
 const windowSizeList = document.getElementById("window-size-list");
 
+const materialSearch = document.getElementById("material-search");
+const priceList = document.getElementById("price-list");
+
 
 estimateButton.addEventListener("click", function() {
     mainMenu.style.display = "none";
@@ -65,4 +68,48 @@ addSizeButton.addEventListener("click", function() {
     `;
 
     windowSizeList.appendChild(newRow);
+});
+
+
+const materials = [
+    { name: "Aluminium Track", price: 0 },
+    { name: "Aluminium Jamb", price: 0 },
+    { name: "Aluminium Top", price: 0 },
+    { name: "Aluminium Bottom", price: 0 },
+    { name: "Aluminium Lock", price: 0 },
+    { name: "Aluminium Interlock", price: 0 }
+];
+
+
+function displayMaterials(searchTerm = "") {
+
+    priceList.innerHTML = "";
+
+    const filteredMaterials = materials.filter(function(material) {
+        return material.name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+
+    filteredMaterials.forEach(function(material) {
+
+        const item = document.createElement("div");
+
+        item.innerHTML = `
+            <p>
+                <strong>${material.name}</strong>
+                — ₦${material.price}
+            </p>
+        `;
+
+        priceList.appendChild(item);
+    });
+}
+
+
+displayMaterials();
+
+
+materialSearch.addEventListener("input", function() {
+
+    displayMaterials(materialSearch.value);
+
 });
