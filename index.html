@@ -11,9 +11,25 @@
 
     <h1>DMJ Estimator</h1>
 
-    <p>What do you want to estimate?</p>
+    <p>What do you want to do?</p>
 
-    <div id="profession-menu">
+    <div id="main-menu">
+
+        <button id="estimate-btn">Create an Estimate</button>
+
+        <button id="prices-btn">Materials & Accessories Prices</button>
+
+        <button onclick="window.location.href='tel:07063107934'">
+            Call DMJ
+        </button>
+
+    </div>
+
+    <div id="profession-menu" style="display: none;">
+
+        <h2>Create an Estimate</h2>
+
+        <p>Select a profession or trade</p>
 
         <button id="aluminium-btn">Aluminium Works</button>
 
@@ -100,6 +116,26 @@
         <br><br>
 
         <button>Continue</button>
+
+    </div>
+
+    <div id="prices-menu" style="display: none;">
+
+        <h2>Materials & Accessories Prices</h2>
+
+        <p>Select a category</p>
+
+        <button>Aluminium</button>
+        <button>Glass</button>
+        <button>Plumbing</button>
+        <button>Electrical</button>
+        <button>Carpentry</button>
+        <button>Tiling</button>
+        <button>Painting</button>
+        <button>Roofing</button>
+        <button>Furniture</button>
+        <button>Ironwork</button>
+        <button>Engineering</button>
 
     </div>
 
