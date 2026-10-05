@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -34,13 +35,47 @@
 
         <p>What type of aluminium work do you want to estimate?</p>
 
-        <button>Windows</button>
+        <button id="windows-btn">Windows</button>
         <button>Doors</button>
         <button>Roofing</button>
         <button>Partitions</button>
         <button>Shop Fronts</button>
         <button>Stainless Railings</button>
         <button>Other Aluminium Works</button>
+
+    </div>
+
+    <div id="window-menu" style="display: none;">
+
+        <h2>Windows</h2>
+
+        <p>Select window type</p>
+
+        <button id="sliding-window-btn">Sliding Windows</button>
+        <button>Casement Windows</button>
+        <button>Transom Windows</button>
+        <button>Fixed Windows</button>
+        <button>Other Types of Windows</button>
+
+    </div>
+
+    <div id="sliding-window-menu" style="display: none;">
+
+        <h2>Sliding Windows</h2>
+
+        <p>Enter the window measurements</p>
+
+        <label for="sliding-width">Width (mm)</label>
+        <input type="number" id="sliding-width" placeholder="Enter width">
+
+        <br><br>
+
+        <label for="sliding-height">Height (mm)</label>
+        <input type="number" id="sliding-height" placeholder="Enter height">
+
+        <br><br>
+
+        <button>Continue</button>
 
     </div>
 
