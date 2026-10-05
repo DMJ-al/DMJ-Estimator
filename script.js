@@ -72,13 +72,23 @@ addSizeButton.addEventListener("click", function() {
 
 
 const materials = [
-    { name: "Aluminium Track", price: 0 },
-    { name: "Aluminium Jamb", price: 0 },
-    { name: "Aluminium Top", price: 0 },
-    { name: "Aluminium Bottom", price: 0 },
-    { name: "Aluminium Lock", price: 0 },
-    { name: "Aluminium Interlock", price: 0 }
+    { name: "Aluminium Track", referencePrice: 0 },
+    { name: "Aluminium Jamb", referencePrice: 0 },
+    { name: "Aluminium Top", referencePrice: 0 },
+    { name: "Aluminium Bottom", referencePrice: 0 },
+    { name: "Aluminium Lock", referencePrice: 0 },
+    { name: "Aluminium Interlock", referencePrice: 0 }
 ];
+
+
+function getMyPrice(materialName) {
+    return localStorage.getItem("myPrice_" + materialName);
+}
+
+
+function saveMyPrice(materialName, price) {
+    localStorage.setItem("myPrice_" + materialName, price);
+}
 
 
 function displayMaterials(searchTerm = "") {
@@ -86,22 +96,66 @@ function displayMaterials(searchTerm = "") {
     priceList.innerHTML = "";
 
     const filteredMaterials = materials.filter(function(material) {
-        return material.name.toLowerCase().includes(searchTerm.toLowerCase());
+        return material.name
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase());
     });
 
+
     filteredMaterials.forEach(function(material) {
+
+        const myPrice = getMyPrice(material.name);
 
         const item = document.createElement("div");
 
         item.innerHTML = `
-            <p>
+            <div>
                 <strong>${material.name}</strong>
-                — ₦${material.price}
-            </p>
+
+                <p>
+                    Reference price:
+                    ₦${material.referencePrice}
+                </p>
+
+                <p>
+                    My price:
+                    ₦${myPrice || "Not set"}
+                </p>
+
+                <input
+                    type="number"
+                    id="price-${material.name}"
+                    placeholder="Enter your price"
+                    min="0"
+                >
+
+                <button onclick="savePrice('${material.name}')">
+                    Save My Price
+                </button>
+
+                <hr>
+            </div>
         `;
 
         priceList.appendChild(item);
     });
+}
+
+
+function savePrice(materialName) {
+
+    const input = document.getElementById("price-" + materialName);
+
+    const price = input.value;
+
+    if (price === "") {
+        alert("Please enter a price.");
+        return;
+    }
+
+    saveMyPrice(materialName, price);
+
+    displayMaterials(materialSearch.value);
 }
 
 
