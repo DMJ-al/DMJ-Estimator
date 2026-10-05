@@ -3,6 +3,4 @@ const professionMenu = document.getElementById("profession-menu");
 const aluminiumMenu = document.getElementById("aluminium-menu");
 
 aluminiumButton.addEventListener("click", function() {
-    professionMenu.style.display = "none";
-    aluminiumMenu.style.display = "block";
-});
+    professionMenu.style.display = "no
