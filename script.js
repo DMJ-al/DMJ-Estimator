@@ -5,12 +5,14 @@ const aluminiumButton = document.getElementById("aluminium-btn");
 const windowsButton = document.getElementById("windows-btn");
 const slidingWindowButton = document.getElementById("sliding-window-btn");
 const addSizeButton = document.getElementById("add-size-btn");
-
+const windowMaterialsButton = document.getElementById("window-materials-btn");
+const checkPricesButton = document.getElementById("check-prices-btn");
 const mainMenu = document.getElementById("main-menu");
 const professionMenu = document.getElementById("profession-menu");
 const aluminiumMenu = document.getElementById("aluminium-menu");
 const windowMenu = document.getElementById("window-menu");
 const slidingWindowMenu = document.getElementById("sliding-window-menu");
+const windowMaterialsMenu = document.getElementById("window-materials-menu");
 const pricesMenu = document.getElementById("prices-menu");
 
 const windowSizeList = document.getElementById("window-size-list");
@@ -69,7 +71,19 @@ addSizeButton.addEventListener("click", function() {
 
     windowSizeList.appendChild(newRow);
 });
+windowMaterialsButton.addEventListener("click", function() {
 
+    slidingWindowMenu.style.display = "none";
+    windowMaterialsMenu.style.display = "block";
+
+});
+
+
+checkPricesButton.addEventListener("click", function() {
+
+    alert("Price checking will be added next.");
+
+});
 
 const materials = [
     { name: "Aluminium Track", referencePrice: 0 },
