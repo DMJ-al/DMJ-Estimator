@@ -63,15 +63,39 @@
 
         <h2>Sliding Windows</h2>
 
-        <p>Enter the window measurements</p>
+        <p>Enter window sizes and quantities</p>
 
-        <label for="sliding-width">Width (mm)</label>
-        <input type="number" id="sliding-width" placeholder="Enter width">
+        <table>
+            <thead>
+                <tr>
+                    <th>Width (mm)</th>
+                    <th>Height (mm)</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
 
-        <br><br>
+            <tbody id="window-size-list">
 
-        <label for="sliding-height">Height (mm)</label>
-        <input type="number" id="sliding-height" placeholder="Enter height">
+                <tr>
+                    <td>
+                        <input type="number" placeholder="Width">
+                    </td>
+
+                    <td>
+                        <input type="number" placeholder="Height">
+                    </td>
+
+                    <td>
+                        <input type="number" placeholder="Qty" min="1" value="1">
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <br>
+
+        <button id="add-size-btn">+ Add another size</button>
 
         <br><br>
 
