@@ -246,3 +246,10 @@ materialSearch.addEventListener("input", function() {
     displayMaterials(materialSearch.value);
 
 });
+confirmEstimatePricesButton.addEventListener("click", function() {
+
+    estimatePricesMenu.style.display = "none";
+
+    alert("Prices confirmed. Ready to continue with the estimate.");
+
+});
