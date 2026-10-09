@@ -257,3 +257,164 @@ confirmEstimatePricesButton.addEventListener("click", function() {
     alert("Prices confirmed. Ready to continue with the estimate.");
 
 });
+// SLIDING WINDOW CALCULATION ENGINE
+
+calculateWindowButton.addEventListener("click", function() {
+
+    const rows = windowSizeList.querySelectorAll("tr");
+    const windows = [];
+
+    // Read all entered window sizes
+    for (const row of rows) {
+
+        const inputs = row.querySelectorAll("input");
+
+        const width = Number(inputs[0].value);
+        const height = Number(inputs[1].value);
+        const quantity = Number(inputs[2].value);
+
+        if (
+            !Number.isFinite(width) ||
+            !Number.isFinite(height) ||
+            !Number.isInteger(quantity) ||
+            width <= 166 ||
+            height <= 90 ||
+            quantity < 1
+        ) {
+            alert(
+                "Enter a valid width greater than 166 mm, " +
+                "height greater than 90 mm, and quantity of at least 1."
+            );
+            return;
+        }
+
+        windows.push({ width, height, quantity });
+    }
+
+    const totals = {};
+
+    function addMaterial(name, length, piecesPerWindow, quantity) {
+
+        if (!totals[name]) {
+            totals[name] = [];
+        }
+
+        totals[name].push({
+            length: length,
+            pieces: piecesPerWindow * quantity
+        });
+    }
+
+    // Calculate each window size
+    windows.forEach(function(window) {
+
+        const width = window.width;
+        const height = window.height;
+        const quantity = window.quantity;
+
+        const top = (width - 166) / 2;
+        const bottom = top;
+        const lock = height - 30;
+        const interlock = lock;
+
+        const glassWidth = top + 16;
+        const glassHeight = lock - 90;
+
+        addMaterial("Aluminium Track", width, 2, quantity);
+        addMaterial("Aluminium Jamb", height, 2, quantity);
+        addMaterial("Aluminium Top", top, 2, quantity);
+        addMaterial("Aluminium Bottom", bottom, 2, quantity);
+        addMaterial("Aluminium Lock", lock, 2, quantity);
+        addMaterial("Aluminium Interlock", interlock, 2, quantity);
+        addMaterial("11:32 Profile", width, 4, quantity);
+        addMaterial("Divider", top, 4, quantity);
+
+        if (!totals["Glass"]) {
+            totals["Glass"] = [];
+        }
+
+        for (let i = 0; i < quantity * 2; i++) {
+            totals["Glass"].push({
+                length: glassWidth,
+                height: glassHeight,
+                pieces: 1
+            });
+        }
+
+        if (!totals["Net"]) {
+            totals["Net"] = [];
+        }
+
+        for (let i = 0; i < quantity; i++) {
+            totals["Net"].push({
+                length: width,
+                height: height,
+                pieces: 1
+            });
+        }
+    });
+
+    // Display the calculated materials
+    let html = "";
+
+    html += "<h3>Required Materials</h3>";
+
+    Object.keys(totals).forEach(function(name) {
+
+        html += "<h4>" + name + "</h4>";
+
+        if (name === "Glass" || name === "Net") {
+
+            const sizes = {};
+
+            totals[name].forEach(function(item) {
+                const key = item.length + " × " + item.height + " mm";
+                sizes[key] = (sizes[key] || 0) + item.pieces;
+            });
+
+            Object.keys(sizes).forEach(function(size) {
+                html += "<p>" + size + " — " + sizes[size] + " piece(s)</p>";
+            });
+
+        } else {
+
+            const sizes = {};
+
+            totals[name].forEach(function(item) {
+                const key = item.length + " mm";
+                sizes[key] = (sizes[key] || 0) + item.pieces;
+            });
+
+            Object.keys(sizes).forEach(function(size) {
+                html += "<p>" + size + " — " + sizes[size] + " piece(s)</p>";
+            });
+        }
+
+    });
+
+    // Accessories
+    const totalWindows = windows.reduce(function(sum, window) {
+        return sum + window.quantity;
+    }, 0);
+
+    html += "<h3>Accessories</h3>";
+    html += "<p>Latch keys: " + totalWindows + " pair(s)</p>";
+    html += "<p>Door rollers: " + (totalWindows * 2) + " pair(s)</p>";
+    html += "<p>Coupling screws: " + (totalWindows * 4) + " piece(s)</p>";
+    html += "<p>0'1 glass rubber: " + (totalWindows * 2) + " roll(s)</p>";
+    html += "<p>11:32 angles: " + (totalWindows * 4) + " piece(s)</p>";
+    html += "<p>4 mm frame-coupling screws: " + (totalWindows * 8) + " piece(s)</p>";
+
+    calculationResults.innerHTML = html;
+
+    slidingWindowMenu.style.display = "none";
+    calculationResultsMenu.style.display = "block";
+
+});
+
+backToMainButton.addEventListener("click", function() {
+
+    calculationResultsMenu.style.display = "none";
+    mainMenu.style.display = "block";
+
+});
