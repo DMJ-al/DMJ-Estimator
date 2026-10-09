@@ -307,6 +307,7 @@ addMaterial("Divider", top, dividerPieces, quantity);
         }
     });
 
+
     // Display the calculated materials
     let html = "";
 
@@ -332,18 +333,31 @@ addMaterial("Divider", top, dividerPieces, quantity);
         } else {
 
             const sizes = {};
+            let totalLength = 0;
 
             totals[name].forEach(function(item) {
                 const key = item.length + " mm";
                 sizes[key] = (sizes[key] || 0) + item.pieces;
+                totalLength += item.length * item.pieces;
             });
 
             Object.keys(sizes).forEach(function(size) {
                 html += "<p>" + size + " — " + sizes[size] + " piece(s)</p>";
             });
+
+            // Estimate stock lengths for aluminium profiles
+            const halfLengths = Math.ceil(totalLength / 2925);
+            const estimatedLengths = halfLengths / 2;
+
+            html += "<p><strong>Total required:</strong> "
+                + totalLength.toFixed(0) + " mm</p>";
+
+            html += "<p><strong>Estimated stock:</strong> "
+                + estimatedLengths + " length(s)</p>";
         }
 
     });
+    
 
     // Accessories
     const totalWindows = windows.reduce(function(sum, window) {
