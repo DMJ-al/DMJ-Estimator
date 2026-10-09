@@ -160,7 +160,17 @@ const materials = [
     { name: "Aluminium Top", referencePrice: 0 },
     { name: "Aluminium Bottom", referencePrice: 0 },
     { name: "Aluminium Lock", referencePrice: 0 },
-    { name: "Aluminium Interlock", referencePrice: 0 }
+    { name: "Aluminium Interlock", referencePrice: 0 },
+    { name: "Glass", referencePrice: 0 },
+    { name: "11:32 Profile", referencePrice: 0 },
+    { name: "Net", referencePrice: 0 },
+    { name: "Divider", referencePrice: 0 },
+    { name: "Latch Keys", referencePrice: 0 },
+    { name: "Door Rollers", referencePrice: 0 },
+    { name: "Coupling Screws", referencePrice: 0 },
+    { name: "0'1 Glass Rubber", referencePrice: 0 },
+    { name: "11:32 Angle", referencePrice: 0 },
+    { name: "4 mm Frame-Coupling Screws", referencePrice: 0 }
 ];
 
 
