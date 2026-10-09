@@ -5,7 +5,6 @@ const aluminiumButton = document.getElementById("aluminium-btn");
 const windowsButton = document.getElementById("windows-btn");
 const slidingWindowButton = document.getElementById("sliding-window-btn");
 const addSizeButton = document.getElementById("add-size-btn");
-const windowMaterialsButton = document.getElementById("window-materials-btn");
 const dividerQuantityInput = document.getElementById("divider-quantity");
 const calculateWindowButton = document.getElementById("calculate-window-btn");
 const calculationResultsMenu = document.getElementById("calculation-results-menu");
@@ -77,12 +76,6 @@ addSizeButton.addEventListener("click", function() {
     `;
 
     windowSizeList.appendChild(newRow);
-});
-windowMaterialsButton.addEventListener("click", function() {
-
-    slidingWindowMenu.style.display = "none";
-    windowMaterialsMenu.style.display = "block";
-
 });
 
 
