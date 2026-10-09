@@ -6,6 +6,7 @@ const windowsButton = document.getElementById("windows-btn");
 const slidingWindowButton = document.getElementById("sliding-window-btn");
 const addSizeButton = document.getElementById("add-size-btn");
 const windowMaterialsButton = document.getElementById("window-materials-btn");
+const dividerQuantityInput = document.getElementById("divider-quantity");
 const calculateWindowButton = document.getElementById("calculate-window-btn");
 const calculationResultsMenu = document.getElementById("calculation-results-menu");
 const calculationResults = document.getElementById("calculation-results");
