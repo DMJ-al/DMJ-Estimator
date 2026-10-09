@@ -262,11 +262,13 @@ materialSearch.addEventListener("input", function() {
 
 });
 confirmEstimatePricesButton.addEventListener("click", function() {
-
     estimatePricesMenu.style.display = "none";
 
-    alert("Prices confirmed. Ready to continue with the estimate.");
-
+    if (calculationResults.innerHTML.trim() !== "") {
+        calculationResultsMenu.style.display = "block";
+    } else {
+        windowMaterialsMenu.style.display = "block";
+    }
 });
 // SLIDING WINDOW CALCULATION ENGINE
 
