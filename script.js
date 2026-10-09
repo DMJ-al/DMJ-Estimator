@@ -88,73 +88,19 @@ windowMaterialsButton.addEventListener("click", function() {
 
 checkPricesButton.addEventListener("click", function() {
 
-    const selectedMaterials = [];
-
     const checkboxes = windowMaterialsMenu.querySelectorAll(
         'input[type="checkbox"]:checked'
     );
 
-    checkboxes.forEach(function(checkbox) {
-        selectedMaterials.push(checkbox.value);
-    });
-
-    if (selectedMaterials.length === 0) {
-        alert("Please select at least one material.");
+    if (checkboxes.length === 0) {
+        alert("Please select at least one material or accessory.");
         return;
     }
 
-    estimatePricesMenu.style.display = "block";
-    windowMaterialsMenu.style.display = "none";
-
-    estimatePriceList.innerHTML = "";
-
-    selectedMaterials.forEach(function(materialName) {
-
-        const material = materials.find(function(item) {
-            return item.name === materialName;
-        });
-
-        if (!material) {
-            return;
-        }
-
-        const myPrice = getMyPrice(material.name);
-
-        const item = document.createElement("div");
-
-        item.innerHTML = `
-            <strong>${material.name}</strong>
-
-            <p>
-                Reference Price:
-                ₦${material.referencePrice}
-            </p>
-
-            <p>
-                My Price:
-                ₦${myPrice || "Not set"}
-            </p>
-
-            <label>
-                Price for this estimate:
-                <input
-                    type="number"
-                    class="estimate-price-input"
-                    data-material="${material.name}"
-                    value="${myPrice || material.referencePrice}"
-                    min="0"
-                >
-            </label>
-
-            <hr>
-        `;
-
-        estimatePriceList.appendChild(item);
-
-    });
+    // Calculate quantities before opening the price stage.
+    calculateWindowButton.click();
 
 });
-
 const materials = [
     { name: "Aluminium Track", referencePrice: 0 },
     { name: "Aluminium Jamb", referencePrice: 0 },
