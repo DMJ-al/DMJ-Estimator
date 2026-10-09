@@ -204,7 +204,16 @@ materialSearch.addEventListener("input", function() {
     displayMaterials(materialSearch.value);
 
 });
-confirmEstimatePricesButton.addEventListener("click", function() { const priceInputs = estimatePriceList.querySelectorAll( ".estimate-material-price" ); let missingPrices = []; priceInputs.forEach(function(input) { const price = input.value; const materialName = input.dataset.material; if (price === "" || !Number.isFinite(Number(price)) || Number(price) < 0) { missingPrices.push(materialName); } }); if (missingPrices.length &gt; 0) { alert("Enter prices for: " + missingPrices.join(", ")); return; } priceInputs.forEach(function(input) { saveMyPrice(input.dataset.material, input.value); }); alert("Prices saved successfully. Next, we will calculate the total estimate."); });   
+confirmEstimatePricesButton.addEventListener("click", function() { 
+    const priceInputs = estimatePriceList.querySelectorAll( ".estimate-material-price" );
+    let missingPrices = []; 
+    priceInputs.forEach(function(input) { 
+        const price = input.value;
+        const materialName = input.dataset.material;
+        if (price === "" || !Number.isFinite(Number(price)) || Number(price) < 0) { missingPrices.push(materialName); } }); 
+    if (missingPrices.length &gt; 0) { alert("Enter prices for: " + missingPrices.join(", ")); return; 
+                                     } 
+    priceInputs.forEach(function(input) { saveMyPrice(input.dataset.material, input.value); }); alert("Prices saved successfully. Next, we will calculate the total estimate."); });   
 // SLIDING WINDOW CALCULATION ENGINE
 
 calculateWindowButton.addEventListener("click", function() {
