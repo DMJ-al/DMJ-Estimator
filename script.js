@@ -79,12 +79,7 @@ addSizeButton.addEventListener("click", function() {
 });
 
 
-checkPricesFromResultsButton.addEventListener("click", function() {
-
-    calculationResultsMenu.style.display = "none";
-    estimatePricesMenu.style.display = "block";
-
-});
+checkPricesFromResultsButton.addEventListener("click", function() { displayEstimatePrices(); calculationResultsMenu.style.display = "none"; estimatePricesMenu.style.display = "block"; });
 const materials = [
     { name: "Aluminium Track", referencePrice: 0 },
     { name: "Aluminium Jamb", referencePrice: 0 },
