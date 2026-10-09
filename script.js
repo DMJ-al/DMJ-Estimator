@@ -79,19 +79,10 @@ addSizeButton.addEventListener("click", function() {
 });
 
 
-checkPricesButton.addEventListener("click", function() {
+checkPricesFromResultsButton.addEventListener("click", function() {
 
-    const checkboxes = windowMaterialsMenu.querySelectorAll(
-        'input[type="checkbox"]:checked'
-    );
-
-    if (checkboxes.length === 0) {
-        alert("Please select at least one material or accessory.");
-        return;
-    }
-
-    // Calculate quantities before opening the price stage.
-    calculateWindowButton.click();
+    calculationResultsMenu.style.display = "none";
+    estimatePricesMenu.style.display = "block";
 
 });
 const materials = [
