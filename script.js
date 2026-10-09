@@ -184,7 +184,25 @@ function savePrice(materialName) {
 
 
 displayMaterials();
+function displayEstimatePrices() {
+    estimatePriceList.innerHTML = "";
 
+    materials.forEach(function(material) {
+        if (calculationResults.innerText.includes(material.name)) {
+            const item = document.createElement("div");
+            const price = getMyPrice(material.name) || "";
+
+            item.innerHTML =
+                "<h4>" + material.name + "</h4>" +
+                '<label>Price (₦):</label>' +
+                '<input type="number" min="0" class="estimate-material-price" ' +
+                'data-material="' + material.name + '" value="' + price + '">' +
+                "<hr>";
+
+            estimatePriceList.appendChild(item);
+        }
+    });
+}
 
 materialSearch.addEventListener("input", function() {
 
