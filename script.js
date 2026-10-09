@@ -338,7 +338,17 @@ calculateWindowButton.addEventListener("click", function() {
         addMaterial("Aluminium Lock", lock, 2, quantity);
         addMaterial("Aluminium Interlock", interlock, 2, quantity);
         addMaterial("11:32 Profile", width, 4, quantity);
-        addMaterial("Divider", top, 4, quantity);
+    const dividerPieces = Number(dividerQuantityInput.value);
+
+if (
+    !Number.isInteger(dividerPieces) ||
+    dividerPieces < 0
+) {
+    alert("Enter a valid divider quantity (0 or more).");
+    return;
+}
+
+addMaterial("Divider", top, dividerPieces, quantity);
 
         if (!totals["Glass"]) {
             totals["Glass"] = [];
