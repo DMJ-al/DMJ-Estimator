@@ -456,9 +456,23 @@ backToMainButton.addEventListener("click", function() {
                 previousMenus.push(currentMenu);
             }
             currentMenu = visibleMenu;
+            sessionStorage.setItem("dmj-current-menu", visibleMenu.id);
+            
         }
     });
+const savedMenuId = sessionStorage.getItem("dmj-current-menu");
 
+const savedMenu = menus.find(function (menu) {
+    return menu.id === savedMenuId;
+});
+
+if (savedMenu) {
+    menus.forEach(function (menu) {
+        menu.style.display = menu === savedMenu ? "block" : "none";
+    });
+
+    currentMenu = savedMenu;
+}
     observer.observe(document.body, {
         subtree: true,
         attributes: true,
