@@ -406,7 +406,7 @@ backToMainButton.addEventListener("click", function() {
         document.querySelectorAll('div[id$="-menu"]')
     );
 
-    let previousMenus = [];
+    let previousMenus = JSON.parse(sessionStorage.getItem("dmj-previous-menus") || "[]");
     let currentMenu = menus.find(function (menu) {
         return getComputedStyle(menu).display !== "none";
     });
@@ -427,7 +427,10 @@ backToMainButton.addEventListener("click", function() {
             "border-radius:6px;font-size:16px;cursor:pointer;";
 
         backButton.addEventListener("click", function () {
-            const previous = previousMenus.pop();
+            const previousMenuId = previousMenus.pop();
+const previous = menus.find(function (menu) {
+    return menu.id === previousMenuId;
+});
 
             if (!previous) {
                 alert("No previous page is available.");
@@ -438,6 +441,8 @@ backToMainButton.addEventListener("click", function() {
             menu.style.display = "none";
             previous.style.display = "block";
             currentMenu = previous;
+            sessionStorage.setItem("dmj-current-menu", previous.id);
+sessionStorage.setItem("dmj-previous-menus", JSON.stringify(previousMenus));
             handlingBack = false;
         });
 
@@ -453,10 +458,12 @@ backToMainButton.addEventListener("click", function() {
 
         if (visibleMenu && visibleMenu !== currentMenu) {
             if (currentMenu) {
-                previousMenus.push(currentMenu);
+            previousMenus.push(currentMenu.id);
+sessionStorage.setItem("dmj-previous-menus", JSON.stringify(previousMenus));
             }
             currentMenu = visibleMenu;
             sessionStorage.setItem("dmj-current-menu", visibleMenu.id);
+            sessionStorage.setItem("dmj-previous-menus", JSON.stringify(previousMenus));
             
         }
     });
