@@ -399,3 +399,69 @@ backToMainButton.addEventListener("click", function() {
     mainMenu.style.display = "block";
 
 });
+
+// DMJ Estimator: automatic Back buttons
+(function () {
+    const menus = Array.from(
+        document.querySelectorAll('div[id$="-menu"]')
+    );
+
+    let previousMenus = [];
+    let currentMenu = menus.find(function (menu) {
+        return getComputedStyle(menu).display !== "none";
+    });
+    let handlingBack = false;
+
+    menus.forEach(function (menu) {
+        if (menu.id === "main-menu") return;
+        if (menu.querySelector(".dmj-back-button")) return;
+
+        const backButton = document.createElement("button");
+        backButton.type = "button";
+        backButton.className = "dmj-back-button";
+        backButton.textContent = "← Back";
+
+        backButton.style.cssText =
+            "display:block;margin:0 0 18px;padding:10px 18px;" +
+            "background:#222;color:#D4AF37;border:1px solid #D4AF37;" +
+            "border-radius:6px;font-size:16px;cursor:pointer;";
+
+        backButton.addEventListener("click", function () {
+            const previous = previousMenus.pop();
+
+            if (!previous) {
+                alert("No previous page is available.");
+                return;
+            }
+
+            handlingBack = true;
+            menu.style.display = "none";
+            previous.style.display = "block";
+            currentMenu = previous;
+            handlingBack = false;
+        });
+
+        menu.insertBefore(backButton, menu.firstChild);
+    });
+
+    const observer = new MutationObserver(function () {
+        if (handlingBack) return;
+
+        const visibleMenu = menus.find(function (menu) {
+            return getComputedStyle(menu).display !== "none";
+        });
+
+        if (visibleMenu && visibleMenu !== currentMenu) {
+            if (currentMenu) {
+                previousMenus.push(currentMenu);
+            }
+            currentMenu = visibleMenu;
+        }
+    });
+
+    observer.observe(document.body, {
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["style", "class"]
+    });
+})();
