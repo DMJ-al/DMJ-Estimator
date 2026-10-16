@@ -185,7 +185,7 @@ function displayEstimatePrices() {
     estimatePriceList.innerHTML = "";
 
     materials.forEach(function(material) {
-        if (calculationResults.innerText.includes(material.name)) {
+    if (calculationResults.innerText.toLowerCase().includes(material.name.toLowerCase().replace(/s$/, ""))) {
             const item = document.createElement("div");
             const price = getMyPrice(material.name) || "";
 
