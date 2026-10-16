@@ -388,7 +388,7 @@ addMaterial("Divider", top, dividerPieces, quantity);
     html += "<p>0'1 glass rubber: " + (totalWindows * 2) + " roll(s)</p>";
     html += "<p>11:32 angles: " + (totalWindows * 4) + " piece(s)</p>";
     html += "<p>4 mm frame-coupling screws: " + (totalWindows * 8) + " piece(s)</p>";
-
+latestEstimate = { windows: windows, totals: totals };
     calculationResults.innerHTML = html;
 
     slidingWindowMenu.style.display = "none";
