@@ -215,7 +215,8 @@ confirmEstimatePricesButton.addEventListener("click", function() {
         if (price === "" || !Number.isFinite(Number(price)) || Number(price) < 0) { missingPrices.push(materialName); } }); 
     if (missingPrices.length > 0) { alert("Enter prices for: " + missingPrices.join(", ")); return; 
                                      } 
-    priceInputs.forEach(function(input) { saveMyPrice(input.dataset.material, input.value); }); alert("Prices saved successfully. Next, we will calculate the total estimate."); });   
+    priceInputs.forEach(function(input) { saveMyPrice(input.dataset.material, input.value); }); 
+if (!latestEstimate) {     alert("Please calculate the window estimate first.");     return; } alert("Prices saved. Ready to calculate the total cost."); 
 // SLIDING WINDOW CALCULATION ENGINE
 
 calculateWindowButton.addEventListener("click", function() {
