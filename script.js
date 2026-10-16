@@ -190,7 +190,7 @@ function displayEstimatePrices() {
 
             item.innerHTML =
                 "<h4>" + material.name + "</h4>" +
-                '<label>Price (₦):</label>' +
+                '<label>Unit price (₦):</label>' +
                 '<input type="number" min="0" class="estimate-material-price" ' +
                 'data-material="' + material.name + '" value="' + price + '">' +
                 "<hr>";
