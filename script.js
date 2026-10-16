@@ -379,6 +379,7 @@ addMaterial("Divider", top, dividerPieces, quantity);
     }, 0);
 
     html += "<h3>Accessories</h3>";
+    html += "<p>Net rubber: " + Math.ceil(totalWindows / 3) + " roll(s)</p>";
     html += "<p>Latch keys: " + totalWindows + " pair(s)</p>";
     html += "<p>Door rollers: " + (totalWindows * 2) + " pair(s)</p>";
     html += "<p>Coupling screws: " + (totalWindows * 4) + " piece(s)</p>";
