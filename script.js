@@ -95,6 +95,7 @@ const materials = [
     { name: "Door Rollers", referencePrice: 0 },
     { name: "Coupling Screws", referencePrice: 0 },
     { name: "0'1 Glass Rubber", referencePrice: 0 },
+    { name: "Net rubber", referencePrice: 0 },
     { name: "11:32 Angle", referencePrice: 0 },
     { name: "4 mm Frame-Coupling Screws", referencePrice: 0 }
 ];
