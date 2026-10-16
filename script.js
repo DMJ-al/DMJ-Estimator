@@ -27,6 +27,7 @@ const estimatePricesMenu = document.getElementById("estimate-prices-menu");
 const estimatePriceList = document.getElementById("estimate-price-list");
 const confirmEstimatePricesButton = document.getElementById("confirm-estimate-prices-btn");
 const checkPricesFromResultsButton = document.getElementById("check-prices-from-results-btn");
+let latestEstimate = null;
 estimateButton.addEventListener("click", function() {
     mainMenu.style.display = "none";
     professionMenu.style.display = "block";
